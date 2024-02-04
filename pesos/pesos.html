@@ -1,54 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <title>Pesos</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <title>Pesos</title>
-</head>
-
-<body>
-  <div id="scorecard">
-  </div>
-  <div id="dollars-scorecard">
-  </div>
-  <script>
-    d3.csv("pesos.csv").then(function (data) {
-      let totalPesos = 0;
-
-      // Iterate through the data array and accumulate the values
-      data.forEach(function (d) {
-        let columnValue = +d.amount; // Assuming 'Age' is the column you want to sum
-        if (!isNaN(columnValue)) {
-          totalPesos += columnValue;
-        }
-      });
-
-      // Add a method to round the total pesos to the nearest integer
-      data.roundToNearestInteger = function (d) {
-        return Math.round(totalPesos);
-      }
-
-      // Add a method to the data object to convert the total to dollars
-      data.convertToDollars = function (d) {
-        totalDollars = data.roundToNearestInteger() / 17.12;
-        return totalDollars.toFixed(2);
-      }
-
-      // Display the sum in the scorecard
-      d3.select("#scorecard")
-        .append("p")
-        .text("Total Pesos: " + "$" + data.roundToNearestInteger());
-
-      d3.select("#dollars-scorecard")
-        .append("p")
-        .text("Total Dollars: " + "$" + data.convertToDollars());
-    }).catch(function (error) {
-      console.error("Error loading CSV file:", error);
-    });
-
-  </script>
-</body>
-
+  <body>
+    <div id="scorecard"></div>
+    <div id="dollars-scorecard"></div>
+    <script src="pesos.js"></script>
+  </body>
 </html>

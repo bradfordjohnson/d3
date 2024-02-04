@@ -2,6 +2,8 @@
 
 My notes learning JavaScript and D3.js.
 
+Each folder contains a different project or example.
+
 ## Usage
 
 ### Basic File Serving
