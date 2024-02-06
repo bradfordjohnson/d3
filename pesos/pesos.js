@@ -21,13 +21,22 @@ d3.csv("data/pesos.csv").then(function (data) {
     }
 
     // Display the sum in the scorecard
-    d3.select("#scorecard")
+    d3.select("#pesos-scorecard")
       .append("p")
-      .text("Total Pesos: " + "$" + data.roundToNearestInteger());
+      .text("Total Pesos Spent");
+    
+    d3.select("#pesos-scorecard")
+      .append("h2")
+      .text("$" + data.roundToNearestInteger());
 
     d3.select("#dollars-scorecard")
       .append("p")
-      .text("Total Dollars: " + "$" + data.convertToDollars());
+      .text("USD Equivalent");
+      
+    d3.select("#dollars-scorecard")
+      .append("h2")
+      .text("$" + data.convertToDollars());
+
   }).catch(function (error) {
     console.error("Error loading CSV file:", error);
   });
